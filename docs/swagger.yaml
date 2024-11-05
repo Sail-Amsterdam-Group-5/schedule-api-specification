@@ -1,4 +1,119 @@
+definitions:
+  model.CheckInDTO:
+    properties:
+      checkedIn:
+        type: string
+      checkinId:
+        type: integer
+      checkinTime:
+        type: string
+      taskId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.TaskDTO:
+    properties:
+      date:
+        type: string
+      description:
+        type: string
+      endTime:
+        type: string
+      groupId:
+        type: integer
+      id:
+        type: integer
+      location:
+        type: string
+      name:
+        type: string
+      startTime:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /schedule/{date}:
+    get:
+      description: Get a schedule by date
+      parameters:
+      - description: Date
+        in: path
+        name: date
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Get schedule by date
+  /schedule/task:
+    post:
+      description: Create a new task
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Create a new task
+  /schedule/task/{id}:
+    delete:
+      description: Delete a task
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Deletes a task
+    post:
+      description: CheckIn on a task
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CheckInDTO'
+      summary: CheckIn on a task
+    put:
+      description: Update a task
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Updates a task
+  /schedule/task{id}:
+    get:
+      description: Get a task by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Get a task by ID
 swagger: "2.0"

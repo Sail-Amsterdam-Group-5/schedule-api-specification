@@ -3,5 +3,182 @@
     "info": {
         "contact": {}
     },
-    "paths": {}
+    "paths": {
+        "/schedule/task": {
+            "post": {
+                "description": "Create a new task",
+                "summary": "Create a new task",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedule/task/{id}": {
+            "put": {
+                "description": "Update a task",
+                "summary": "Updates a task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "CheckIn on a task",
+                "summary": "CheckIn on a task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CheckInDTO"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a task",
+                "summary": "Deletes a task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedule/task{id}": {
+            "get": {
+                "description": "Get a task by ID",
+                "summary": "Get a task by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedule/{date}": {
+            "get": {
+                "description": "Get a schedule by date",
+                "summary": "Get schedule by date",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Date",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.CheckInDTO": {
+            "type": "object",
+            "properties": {
+                "checkedIn": {
+                    "type": "string"
+                },
+                "checkinId": {
+                    "type": "integer"
+                },
+                "checkinTime": {
+                    "type": "string"
+                },
+                "taskId": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.TaskDTO": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "groupId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }
