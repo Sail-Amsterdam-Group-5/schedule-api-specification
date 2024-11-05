@@ -11,11 +11,6 @@ import (
 )
 
 func main() {
-	// Register the controller
-	//http.HandleFunc("/schedule", scheduleController)
-	// Start the server
-	//http.ListenAndServe(":8080", nil)
-
 	router := gin.Default()
 
 	// Initialize Swagger doc info
