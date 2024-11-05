@@ -1,35 +1,112 @@
 package controller
 
 import (
-	"encoding/json"
 	"net/http"
+
+	"schedule-api-specification/model"
+
+	"github.com/gin-gonic/gin"
 )
 
-func getSchedule(w http.ResponceWriter, id int, date string) {
-	// Get the schedule
-	schedule := getTasks(id, date)
-	// Return the schedule
-	encoder := json.NewEncoder(w).Encode(schedule)
-	return encoder
-}
-
-func getTasks(id int, date string) []Task {
-	tasks := []Task{
+// GetSchedule retreves the schedule for a specific date.
+// @Summary Get schedule by date
+// @Description Get a schedule by date
+// @Param date path string true "Date"
+// @Success 200 {object} model.TaskDTO[]
+// @Router /schedule/{date} [get]
+func GetSchedule(c *gin.Context) {
+	// date := c.Param("date")
+	// id := c.Request.BasicAuth("id")
+	// // Get the schedule
+	// schedule := getTasks(id, date)
+	schedule := []model.TaskDTO{
 		{1, 1, "Task 1", "Description 1", "2019-01-01", "09:00", "10:00", "Location 1"},
 		{2, 1, "Task 2", "Description 2", "2019-01-01", "10:00", "11:00", "Location 2"},
 		{3, 1, "Task 3", "Description 3", "2019-01-01", "11:00", "12:00", "Location 3"},
 		{4, 1, "Task 4", "Description 4", "2019-01-01", "12:00", "13:00", "Location 4"},
 	}
-	return tasks
+	// // Return the schedule
+	c.JSON(http.StatusOK, schedule)
 }
 
-type Task struct {
-	Id          int    `json:"id"`
-	GroupId     int    `json:"groupId"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Date        string `json:"date"`
-	StartTime   string `json:"startTime"`
-	EndTime     string `json:"endTime"`
-	Location    string `json:"location"`
+// GetTask retreves a specific Task.
+// @Summary Get a task by ID
+// @Description Get a task by ID
+// @Param id path string true "ID"
+// @Success 200 {object} model.TaskDTO
+// @Router /schedule/task{id} [get]
+func GetTask(c *gin.Context) {
+
+	// // Return the task
+	c.JSON(http.StatusOK, model.TaskDTO{1, 1, "Task 1", "Description 1", "2019-01-01", "09:00", "10:00", "Location 1"})
+}
+
+// CreateTask creates a new Task.
+// @Summary Create a new task
+// @Description Create a new task
+// @Success 200 {object} model.TaskDTO
+// @Router /schedule/task [post]
+func CreateTask(c *gin.Context) {
+	var task model.TaskDTO
+	if err := c.BindJSON(&task); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	// Here you would add code to save the task to a database.
+	c.JSON(http.StatusOK, task)
+}
+
+// UpdateTask creates a Task.
+// @Summary Updates a task
+// @Description Update a task
+// @Param id path string true "ID"
+// @Success 200 {object} model.TaskDTO
+// @Router /schedule/task/{id} [put]
+func UpdateTask(c *gin.Context) {
+	// (int)id := c.Param("id")
+	var task model.TaskDTO
+	if err := c.BindJSON(&task); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	// task.Id = id
+	// Here you would add code to save the task to a database.
+	c.JSON(http.StatusOK, task)
+}
+
+// DeleteTask deletes a Task.
+// @Summary Deletes a task
+// @Description Delete a task
+// @Param id path string true "ID"
+// @Success 200 {object} model.TaskDTO
+// @Router /schedule/task/{id} [delete]
+func DeleteTask(c *gin.Context) {
+	id := c.Param("id")
+	// Here you would delete the task from the database using the id.
+	c.JSON(http.StatusOK, gin.H{"message": "Task with ID " + id + " deleted successfully"})
+}
+
+// CheckIn checks in on a Task.
+// @Summary CheckIn on a task
+// @Description CheckIn on a task
+// @Param id path string true "ID"
+// @Success 200 {object} model.CheckInDTO
+// @Router /schedule/task/{id} [post]
+func CheckIn(c *gin.Context) {
+	// taskId := c.Param("id")
+	// userId :=
+
+	var checkin model.CheckInDTO
+	// Here you would upload the checkin to the database.
+	c.JSON(http.StatusOK, checkin)
+}
+
+func getTasks(id int, date string) {
+	// tasks := []model.Task{
+	// 	{1, 1, "Task 1", "Description 1", "2019-01-01", "09:00", "10:00", "Location 1"},
+	// 	{2, 1, "Task 2", "Description 2", "2019-01-01", "10:00", "11:00", "Location 2"},
+	// 	{3, 1, "Task 3", "Description 3", "2019-01-01", "11:00", "12:00", "Location 3"},
+	// 	{4, 1, "Task 4", "Description 4", "2019-01-01", "12:00", "13:00", "Location 4"},
+	// }
+	// return tasks
 }

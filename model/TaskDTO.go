@@ -1,6 +1,6 @@
 package model
 
-type Task struct {
+type TaskDTO struct {
 	Id          int    `json:"id"`
 	GroupId     int    `json:"groupId"`
 	Name        string `json:"name"`
