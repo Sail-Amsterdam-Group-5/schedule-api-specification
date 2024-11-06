@@ -20,10 +20,31 @@ func GetSchedule(c *gin.Context) {
 	// // Get the schedule
 	// schedule := getTasks(id, date)
 	schedule := []model.TaskDTO{
-		{1, 1, "Task 1", "Description 1", "2019-01-01", "09:00", "10:00", "Location 1"},
-		{2, 1, "Task 2", "Description 2", "2019-01-01", "10:00", "11:00", "Location 2"},
-		{3, 1, "Task 3", "Description 3", "2019-01-01", "11:00", "12:00", "Location 3"},
-		{4, 1, "Task 4", "Description 4", "2019-01-01", "12:00", "13:00", "Location 4"},
+		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"},
+		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: "Location 2"},
+		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: "Location 3"},
+		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: "Location 4"},
+	}
+	// // Return the schedule
+	c.JSON(http.StatusOK, schedule)
+}
+
+// GetTasks retreves the tasks for a specific date.
+// @Summary Get the tasks by date and group
+// @Description Get a list of tasks by date and group
+// @Param date path string true "Date"
+// @Param groupid path string true "Group ID"
+// @Success 200 {object} model.TaskDTO[]
+// @Router /schedule/{date}/{groupid} [get]
+func GetTasks(c *gin.Context) {
+	// date := c.Param("date")
+	// // Get the tasks for the date and group
+	// schedule := getTasks(id, date)
+	schedule := []model.TaskDTO{
+		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"},
+		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: "Location 2"},
+		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: "Location 3"},
+		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: "Location 4"},
 	}
 	// // Return the schedule
 	c.JSON(http.StatusOK, schedule)
@@ -34,11 +55,11 @@ func GetSchedule(c *gin.Context) {
 // @Description Get a task by ID
 // @Param id path string true "ID"
 // @Success 200 {object} model.TaskDTO
-// @Router /schedule/task{id} [get]
+// @Router /schedule/task/{id} [get]
 func GetTask(c *gin.Context) {
 
 	// // Return the task
-	c.JSON(http.StatusOK, model.TaskDTO{1, 1, "Task 1", "Description 1", "2019-01-01", "09:00", "10:00", "Location 1"})
+	c.JSON(http.StatusOK, model.TaskDTO{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"})
 }
 
 // CreateTask creates a new Task.

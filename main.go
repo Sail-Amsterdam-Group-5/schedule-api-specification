@@ -23,8 +23,10 @@ func main() {
 	schedule := router.Group("/schedule")
 	{
 		schedule.GET("/:date", middleware.CheckScope("volunteer"), controller.GetSchedule)
+		schedule.GET("/:date/:groupid", middleware.CheckScope("team-lead"), controller.GetSchedule)
 
 		schedule.GET("/task/:id", middleware.CheckScope("volunteer"), controller.GetTask)
+
 		schedule.POST("/task", middleware.CheckScope("team-lead"), controller.CreateTask)
 		schedule.PUT("/task/:id", middleware.CheckScope("team-lead"), controller.UpdateTask)
 		schedule.DELETE("/task/:id", middleware.CheckScope("team-lead"), controller.DeleteTask)

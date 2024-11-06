@@ -58,6 +58,26 @@ paths:
           schema:
             $ref: '#/definitions/model.TaskDTO'
       summary: Create a new task
+  /schedule/task/{date}/{groupid}:
+    get:
+      description: Get a list of tasks by date and group
+      parameters:
+      - description: Date
+        in: path
+        name: date
+        required: true
+        type: string
+      - description: Group ID
+        in: path
+        name: groupid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Get the tasks by date and group
   /schedule/task/{id}:
     delete:
       description: Delete a task
@@ -73,6 +93,20 @@ paths:
           schema:
             $ref: '#/definitions/model.TaskDTO'
       summary: Deletes a task
+    get:
+      description: Get a task by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TaskDTO'
+      summary: Get a task by ID
     post:
       description: CheckIn on a task
       parameters:
@@ -101,19 +135,4 @@ paths:
           schema:
             $ref: '#/definitions/model.TaskDTO'
       summary: Updates a task
-  /schedule/task{id}:
-    get:
-      description: Get a task by ID
-      parameters:
-      - description: ID
-        in: path
-        name: id
-        required: true
-        type: string
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.TaskDTO'
-      summary: Get a task by ID
 swagger: "2.0"
