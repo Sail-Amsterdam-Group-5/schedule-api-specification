@@ -19,6 +19,19 @@ const docTemplate = `{
             "post": {
                 "description": "Create a new task",
                 "summary": "Create a new task",
+                "parameters": [
+                    {
+                        "description": "Task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+<<<<<<< HEAD
+=======
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -26,6 +39,7 @@ const docTemplate = `{
                             "$ref": "#/definitions/model.TaskDTO"
                         }
                     }
+>>>>>>> 9fc1e708993d35653c9863117ecdc3285b3b59ff
                 }
             }
         },
@@ -61,6 +75,15 @@ const docTemplate = `{
                         "name": "id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "Task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -174,7 +197,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "checkedIn": {
-                    "type": "string"
+                    "type": "boolean"
                 },
                 "checkinId": {
                     "type": "integer"

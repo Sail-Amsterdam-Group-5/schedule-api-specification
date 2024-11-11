@@ -2,7 +2,7 @@ definitions:
   model.CheckInDTO:
     properties:
       checkedIn:
-        type: string
+        type: boolean
       checkinId:
         type: integer
       checkinTime:
@@ -72,6 +72,16 @@ paths:
   /schedule/task:
     post:
       description: Create a new task
+<<<<<<< HEAD
+=======
+      parameters:
+      - description: Task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/model.TaskDTO'
+>>>>>>> 9fc1e708993d35653c9863117ecdc3285b3b59ff
       responses:
         "200":
           description: OK
@@ -129,6 +139,12 @@ paths:
         name: id
         required: true
         type: string
+      - description: Task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/model.TaskDTO'
       responses:
         "200":
           description: OK
