@@ -29,36 +29,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/schedule/task/{date}/{groupid}": {
-            "get": {
-                "description": "Get a list of tasks by date and group",
-                "summary": "Get the tasks by date and group",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Date",
-                        "name": "date",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Group ID",
-                        "name": "groupid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.TaskDTO"
-                        }
-                    }
-                }
-            }
-        },
         "/schedule/task/{id}": {
             "get": {
                 "description": "Get a task by ID",
@@ -154,6 +124,36 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Date",
                         "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedule/{date}/{groupid}": {
+            "get": {
+                "description": "Get a list of tasks by date and group",
+                "summary": "Get the tasks by date and group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Date",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Group ID",
+                        "name": "groupid",
                         "in": "path",
                         "required": true
                     }
