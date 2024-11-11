@@ -19,34 +19,15 @@ const docTemplate = `{
             "post": {
                 "description": "Create a new task",
                 "summary": "Create a new task",
-                "responses": {
-                    "200": {
-                        "description": "OK",
+                "parameters": [
+                    {
+                        "description": "Task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
                         "schema": {
                             "$ref": "#/definitions/model.TaskDTO"
                         }
-                    }
-                }
-            }
-        },
-        "/schedule/task/{date}/{groupid}": {
-            "get": {
-                "description": "Get a list of tasks by date and group",
-                "summary": "Get the tasks by date and group",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Date",
-                        "name": "date",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Group ID",
-                        "name": "groupid",
-                        "in": "path",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -91,6 +72,15 @@ const docTemplate = `{
                         "name": "id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "Task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
                     }
                 ],
                 "responses": {
@@ -167,6 +157,36 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/schedule/{date}/{groupid}": {
+            "get": {
+                "description": "Get a list of tasks by date and group",
+                "summary": "Get the tasks by date and group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Date",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Group ID",
+                        "name": "groupid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.TaskDTO"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -174,7 +194,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "checkedIn": {
-                    "type": "string"
+                    "type": "boolean"
                 },
                 "checkinId": {
                     "type": "integer"
