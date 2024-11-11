@@ -65,7 +65,7 @@ func GetTask(c *gin.Context) {
 // CreateTask creates a new Task.
 // @Summary Create a new task
 // @Description Create a new task
-// @Param task body model.TaskDTO true "Task"
+// @Param task body model.Task true "Task"
 // @Success 200 {object} model.TaskDTO
 // @Router /schedule/task [post]
 func CreateTask(c *gin.Context) {
@@ -82,7 +82,7 @@ func CreateTask(c *gin.Context) {
 // @Summary Updates a task
 // @Description Update a task
 // @Param id path string true "ID"
-// @Param task body model.TaskDTO true "Task"
+// @Param task body model.Task true "Task"
 // @Success 200 {object} model.TaskDTO
 // @Router /schedule/task/{id} [put]
 func UpdateTask(c *gin.Context) {
