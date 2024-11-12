@@ -26,11 +26,9 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.TaskDTO"
+                            "$ref": "#/definitions/model.Task"
                         }
                     }
-<<<<<<< HEAD
-=======
                 ],
                 "responses": {
                     "200": {
@@ -39,7 +37,6 @@ const docTemplate = `{
                             "$ref": "#/definitions/model.TaskDTO"
                         }
                     }
->>>>>>> 9fc1e708993d35653c9863117ecdc3285b3b59ff
                 }
             }
         },
@@ -82,7 +79,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.TaskDTO"
+                            "$ref": "#/definitions/model.Task"
                         }
                     }
                 ],
@@ -213,6 +210,60 @@ const docTemplate = `{
                 }
             }
         },
+        "model.Location": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lat": {
+                    "type": "number"
+                },
+                "longtitude": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Task": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "groupId": {
+                    "type": "integer"
+                },
+                "location": {
+                    "description": "has to be object",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/model.Location"
+                        }
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                }
+            }
+        },
         "model.TaskDTO": {
             "type": "object",
             "properties": {
@@ -232,7 +283,12 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "location": {
-                    "type": "string"
+                    "description": "has to be object",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/model.Location"
+                        }
+                    ]
                 },
                 "name": {
                     "type": "string"

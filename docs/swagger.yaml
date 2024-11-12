@@ -12,6 +12,40 @@ definitions:
       userId:
         type: integer
     type: object
+  model.Location:
+    properties:
+      address:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      lat:
+        type: number
+      longtitude:
+        type: number
+      name:
+        type: string
+    type: object
+  model.Task:
+    properties:
+      date:
+        type: string
+      description:
+        type: string
+      endTime:
+        type: string
+      groupId:
+        type: integer
+      location:
+        allOf:
+        - $ref: '#/definitions/model.Location'
+        description: has to be object
+      name:
+        type: string
+      startTime:
+        type: string
+    type: object
   model.TaskDTO:
     properties:
       date:
@@ -25,7 +59,9 @@ definitions:
       id:
         type: integer
       location:
-        type: string
+        allOf:
+        - $ref: '#/definitions/model.Location'
+        description: has to be object
       name:
         type: string
       startTime:
@@ -72,16 +108,13 @@ paths:
   /schedule/task:
     post:
       description: Create a new task
-<<<<<<< HEAD
-=======
       parameters:
       - description: Task
         in: body
         name: task
         required: true
         schema:
-          $ref: '#/definitions/model.TaskDTO'
->>>>>>> 9fc1e708993d35653c9863117ecdc3285b3b59ff
+          $ref: '#/definitions/model.Task'
       responses:
         "200":
           description: OK
@@ -144,7 +177,7 @@ paths:
         name: task
         required: true
         schema:
-          $ref: '#/definitions/model.TaskDTO'
+          $ref: '#/definitions/model.Task'
       responses:
         "200":
           description: OK

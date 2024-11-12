@@ -19,11 +19,14 @@ func GetSchedule(c *gin.Context) {
 	// id := c.Request.BasicAuth("id")
 	// // Get the schedule
 	// schedule := getTasks(id, date)
+	location1 := model.LocationDTO{Id: 1, Name: "Location 1", Description: "Description 1", Address: "Address 1", Lat: 1.0, Lng: 1.0}
+	location2 := model.LocationDTO{Id: 2, Name: "Location 2", Description: "Description 2", Address: "Address 2", Lat: 2.0, Lng: 2.0}
+
 	schedule := []model.TaskDTO{
-		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"},
-		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: "Location 2"},
-		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: "Location 3"},
-		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: "Location 4"},
+		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: location1},
+		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: location2},
+		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: location1},
+		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: location2},
 	}
 	// // Return the schedule
 	c.JSON(http.StatusOK, schedule)
@@ -40,11 +43,14 @@ func GetTasks(c *gin.Context) {
 	// date := c.Param("date")
 	// // Get the tasks for the date and group
 	// schedule := getTasks(id, date)
+	location1 := model.LocationDTO{Id: 1, Name: "Location 1", Description: "Description 1", Address: "Address 1", Lat: 1.0, Lng: 1.0}
+	location2 := model.LocationDTO{Id: 2, Name: "Location 2", Description: "Description 2", Address: "Address 2", Lat: 2.0, Lng: 2.0}
+
 	schedule := []model.TaskDTO{
-		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"},
-		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: "Location 2"},
-		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: "Location 3"},
-		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: "Location 4"},
+		{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: location1},
+		{Id: 2, GroupId: 1, Name: "Task 2", Description: "Description 2", Date: "2019-01-01", StartTime: "10:00", EndTime: "11:00", Location: location1},
+		{Id: 3, GroupId: 1, Name: "Task 3", Description: "Description 3", Date: "2019-01-01", StartTime: "11:00", EndTime: "12:00", Location: location2},
+		{Id: 4, GroupId: 1, Name: "Task 4", Description: "Description 4", Date: "2019-01-01", StartTime: "12:00", EndTime: "13:00", Location: location1},
 	}
 	// // Return the schedule
 	c.JSON(http.StatusOK, schedule)
@@ -58,8 +64,9 @@ func GetTasks(c *gin.Context) {
 // @Router /schedule/task/{id} [get]
 func GetTask(c *gin.Context) {
 
+	location1 := model.LocationDTO{Id: 1, Name: "Location 1", Description: "Description 1", Address: "Address 1", Lat: 1.0, Lng: 1.0}
 	// // Return the task
-	c.JSON(http.StatusOK, model.TaskDTO{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: "Location 1"})
+	c.JSON(http.StatusOK, model.TaskDTO{Id: 1, GroupId: 1, Name: "Task 1", Description: "Description 1", Date: "2019-01-01", StartTime: "09:00", EndTime: "10:00", Location: location1})
 }
 
 // CreateTask creates a new Task.
