@@ -8,5 +8,5 @@ type TaskDTO struct {
 	Date        string `json:"date"`
 	StartTime   string `json:"startTime"`
 	EndTime     string `json:"endTime"`
-	Location    string `json:"location"`
+	Location    string `json:"location"` // has to be object
 }
